@@ -1,0 +1,61 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+{% if user.is_authenticated %}
+<h1 id=title>All Posts</h1>
+{% else %}
+<h1 id=welcome>Welcome to Network.org</h1>
+<h4 id="welcome-re">Register if you are new Here!</h3>
+    {% endif %}
+    <main>
+        {% if user.is_authenticated %}
+        <div class="alert alert-dark" role=alert id="message-box" style="display: none;">
+        </div>
+
+        <form id='post-form'>
+            <textarea id="text" cols="100" rows="5" class="form-control" placeholder="New post"></textarea>
+            <button type="submit" id="sent" class="btn btn-dark">Send</button>
+
+
+        </form>
+        <div id="allpage">
+
+        </div>
+        <div id="followpage">
+
+        </div>
+        <div id="profile-div">
+            <h4 id="follower-number"></h4>
+            <h4 id="following-number"></h4>
+
+            {% if user.is_authenticated %}
+
+            <button class="btn btn-dark" id="follow-btn" type="submit">Follow</button>
+            <button class="btn btn-dark" id="unfollow-btn" type="submit">Unfollow</button>
+
+            {% endif %}
+            <div id="post_body">
+
+            </div>
+
+
+        </div>
+        <div class="paginate" id="paginate">
+
+        </div>
+
+        <form id='edit-post'>
+            <textarea id="edit-text" cols="100" rows="5" class="form-control" placeholder="Edit post"></textarea>
+            <button type="submit" id="save-edit" class="btn btn-dark">Save</button>
+        </form>
+
+
+
+
+        {% endif %}
+    </main>
+    {% endblock %}
+    {% block script %}
+    <script src="{% static 'network/index.js' %}"></script>
+    {% endblock %}
